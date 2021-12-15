@@ -1,7 +1,9 @@
-$fg-color: red;
+$fg-color: blue;
 $bg-color: green;
+$fs: 300px;
 
 body {
   color: $fg-color;
   background-color: $bg-color;
+  font-size: $fs;
 }
