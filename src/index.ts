@@ -20,6 +20,20 @@ declare const window: any;
 window.sayHello = sayHello;
 window.outlog = outlog;
 
+const rickHuangRecipe = {
+	leatherString: 2,
+	ironIngot: 1,
+	refinedMoonstone: 3
+};
+
+const leoHuangReceipe = {
+	...rickHuangRecipe,
+	leather: 1,
+	refinedMoonstone: 4
+}
+console.log(rickHuangRecipe);
+console.log(leoHuangReceipe);
+
 function myComponent() {
 	const element = document.createElement('div');
 	element.innerHTML = '<h1>my HTML content!</h1>';

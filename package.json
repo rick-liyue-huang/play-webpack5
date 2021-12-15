@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack serve",
     "watch": "webpack --watch",
-    "build": "webpack --config webpack.config.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.js",
     "dev": "http-server ./dist/ -d -c-1 -a -p 3000",
     "serve": "webpack serve --config webpack.config.js"
   },
@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/rick-liyue-huang/play-webpack5#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
     "@types/lodash": "^4.14.178",
+    "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
     "http-server": "^14.0.0",
