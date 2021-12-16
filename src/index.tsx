@@ -4,8 +4,10 @@ import "../styles/style.css";
 import "../styles/scss.scss";
 import webpackImage from '../images/webpack1.jpg'
 import data from '../data.json';
-// import {data} from '../data';
+import {render} from 'react-dom';
+import React from "react";
 
+render(<h1>hello, this is react</h1>, document.getElementById('root'));
 
 outlog('My log');
 

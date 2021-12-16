@@ -5,18 +5,23 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const now = new Date();
 
 let mode = "development";
+let target = "web";
+
 if (process.env.NODE_ENV === "production") {
-	mode = "production"
+	mode = "production";
+	target = "browserslist";
 }
+
 
 module.exports = {
 	mode: mode,
-	entry: './src/index.ts',
-	output: {
-		filename: `bundle-[contenthash].js`,
-		path: path.resolve(__dirname, 'dist'),
-		clean: true
-	},
+	target: target,
+	entry: './src/index.tsx',
+	// output: {
+	// 	filename: `bundle-[contenthash].js`,
+	// 	path: path.resolve(__dirname, 'dist'),
+	// 	clean: true
+	// },
 	module: {
 		rules: [
 			{
@@ -31,13 +36,13 @@ module.exports = {
 				use: 'ts-loader',
 				exclude: /node_modules/
 			},
-			{
+			/*{
 				test: /\.css$/i,
 				// use: ['style-loader', 'css-loader'],
 				use: [MiniCssExtractPlugin.loader, 'css-loader']
-			},
+			},*/
 			{
-				test: /\.s[ac]ss$/i,
+				test: /\.(s[ac]|c)ss$/i,
 				use: [/*'style-loader'*/MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
 			},
 			{
@@ -51,11 +56,11 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new HtmlWebpackPlugin({
+		/*new HtmlWebpackPlugin({
 			title: 'My Webpack 5'
-		}),
+		}),*/
 		new MiniCssExtractPlugin({
-			filename: 'bundle-[contenthash].css'
+			filename: 'bundle.css'
 		})
 	],
 	devServer: {
