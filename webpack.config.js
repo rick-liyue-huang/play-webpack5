@@ -17,15 +17,16 @@ module.exports = {
 	mode: mode,
 	target: target,
 	entry: './src/index.tsx',
-	// output: {
-	// 	filename: `bundle-[contenthash].js`,
-	// 	path: path.resolve(__dirname, 'dist'),
-	// 	clean: true
-	// },
+	output: {
+		assetModuleFilename: "images/[hash][ext]",
+		// filename: `bundle-[contenthash].js`,
+		// path: path.resolve(__dirname, 'dist'),
+		// clean: true
+	},
 	module: {
 		rules: [
 			{
-				test: /\.js$/i,
+				test: /\.jsx?$/i,
 				exclude: /node_modules/,
 				use: {
 					loader: "babel-loader"
@@ -47,11 +48,19 @@ module.exports = {
 			},
 			{
 				test: /\.(png|svg|jpg|jpeg|gif)$/i,
-				type: 'asset/resource',
+				// type: 'asset/resource',
+				// type: 'asset/inline',
+				type: 'asset',
+				parser: {
+					dataUrlCondition: {
+						maxSize: 30 * 1024
+					}
+				}
 			},
 			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/i,
-				type: 'asset/resource'
+				// type: 'asset/resource'
+				type: 'asset/inline'
 			}
 		]
 	},
@@ -69,7 +78,7 @@ module.exports = {
 	},
 	devtool: "source-map",
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js']
+		extensions: ['.tsx', '.ts', '.js', 'jsx']
 	}
 }
 

@@ -6,8 +6,9 @@ import webpackImage from '../images/webpack1.jpg'
 import data from '../data.json';
 import {render} from 'react-dom';
 import React from "react";
+import App from './components/App';
 
-render(<h1>hello, this is react</h1>, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
 
 outlog('My log');
 
@@ -43,6 +44,7 @@ function myComponent() {
 	element.classList.add('my-class')
 	const myImg = new Image();
 	myImg.src = webpackImage;
+	myImg.height = 600;
 	element.appendChild(myImg);
 
 	data.forEach((item: {name: string, price: number}) => {
