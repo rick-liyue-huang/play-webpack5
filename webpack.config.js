@@ -2,6 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const now = new Date();
 
 let mode = "development";
@@ -19,8 +20,8 @@ module.exports = {
 	entry: './src/index.tsx',
 	output: {
 		assetModuleFilename: "images/[hash][ext]",
-		// filename: `bundle-[contenthash].js`,
-		// path: path.resolve(__dirname, 'dist'),
+		filename: `bundle-[hash].js`,
+		path: path.resolve(__dirname, 'dist'),
 		// clean: true
 	},
 	module: {
@@ -65,12 +66,14 @@ module.exports = {
 		]
 	},
 	plugins: [
-		/*new HtmlWebpackPlugin({
-			title: 'My Webpack 5'
-		}),*/
+		new HtmlWebpackPlugin({
+			title: 'My Webpack 5',
+			template: "./src/index.html"
+		}),
 		new MiniCssExtractPlugin({
-			filename: 'bundle.css'
-		})
+			filename: 'bundle-[hash].css'
+		}),
+		new CleanWebpackPlugin()
 	],
 	devServer: {
 		static: './dist',
