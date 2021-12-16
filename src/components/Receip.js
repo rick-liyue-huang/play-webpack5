@@ -5,6 +5,7 @@ const MyComponent = () => {
 	return (
 		<div>
 			<button onClick={() => setCount(count+1)}>{count}</button>
+			<button onClick={() => setCount(count+1)}>{count}</button>
 		</div>
 	);
 };

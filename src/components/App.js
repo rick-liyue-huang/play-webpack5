@@ -10,7 +10,7 @@ const App = (props) => {
 			<section className={'hero'}></section>
 			<main>
 				<section>
-					<h3>oh, hi React from App</h3>
+					<h3>from App hahah---</h3>
 				</section>
 				<img src={threekingdoms} alt="" width={'500'}/>
 				<MyComponent />

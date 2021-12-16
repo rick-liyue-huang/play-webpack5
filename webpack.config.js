@@ -3,16 +3,32 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const now = new Date();
 
 let mode = "development";
 let target = "web";
+const plugins = [
+	new HtmlWebpackPlugin({
+		title: 'My Webpack 5',
+		template: "./src/index.html"
+	}),
+	new MiniCssExtractPlugin({
+		filename: 'bundle-[hash].css'
+	}),
+	new CleanWebpackPlugin(),
+];
 
 if (process.env.NODE_ENV === "production") {
 	mode = "production";
 	target = "browserslist";
 }
-
+else {
+	plugins.push(
+		// we can add this plugin on webpack.config.prod.js
+		new ReactRefreshWebpackPlugin()
+	)
+}
 
 module.exports = {
 	mode: mode,
@@ -65,16 +81,7 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			title: 'My Webpack 5',
-			template: "./src/index.html"
-		}),
-		new MiniCssExtractPlugin({
-			filename: 'bundle-[hash].css'
-		}),
-		new CleanWebpackPlugin()
-	],
+	plugins: plugins,
 	devServer: {
 		static: './dist',
 		port: 3000
